@@ -5,8 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="FAB18 巡檢">
+  <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
   <meta name="theme-color" content="#0f172a">
   <meta name="format-detection" content="telephone=no">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -875,7 +876,13 @@ img, video { max-width: 100%; height: auto; }
     #phone-col{margin:0 auto}
     /* 手機實機 / 加入主畫面：滿版 APP */
     @media (max-width:520px), (pointer:coarse) and (max-width:900px){
-      #phone-col{width:100% !important;height:100%}
+      html,body{background:#020617;overflow:hidden}
+      html.light,html.light body{background:#f1f5f9}
+      body,main{height:auto !important;display:block !important}
+      #phone-col{position:fixed !important;top:0 !important;left:0 !important;right:0 !important;bottom:auto !important;width:100% !important;height:var(--app-h,100dvh) !important;margin:0 !important}
+      #phone-case .text-blue-400,#phone-case .text-red-400{font-weight:700}
+      html.light #phone-case .text-blue-400{color:#1d4ed8 !important}
+      html.light #phone-case .text-red-400{color:#b91c1c !important}
       .phone-ctl{display:none !important}
       #phone-aside{padding:0 !important;width:100% !important;overflow:hidden}
       #phone-scaler{width:100vw !important;height:100% !important;margin:0 !important}
@@ -884,11 +891,12 @@ img, video { max-width: 100%; height: auto; }
       .safe-top{display:block;height:env(safe-area-inset-top,0px);background:#0f172a;flex-shrink:0}
       html.light .safe-top{background:#fff}
       #phone-sheet{top:env(safe-area-inset-top,0px) !important}
-      #phone-case > nav{height:calc(4.25rem + env(safe-area-inset-bottom,0px));padding-bottom:env(safe-area-inset-bottom,0px)}
+      #phone-case > nav{height:calc(3.9rem + env(safe-area-inset-bottom,0px));padding:6px 8px env(safe-area-inset-bottom,0px);align-items:flex-start}
       #phone-case > div.h-4{display:none !important}
       #toast-container{left:12px !important;right:12px;bottom:calc(5.5rem + env(safe-area-inset-bottom,0px)) !important}
     }
     #phone-case > nav button{min-width:3.6rem}
+    body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
     #phone-case > nav .text-\[10px\]{font-size:12px}
   </style>
   <style id="phone-settings-css">
@@ -3153,9 +3161,19 @@ img, video { max-width: 100%; height: auto; }
           <div><div class="ps-t">網路狀態 (演示用)</div><div class="ps-row c3">
             ${B(net === 'wifi', "psNet('wifi')", '<i class="fa-solid fa-wifi"></i> Wi-Fi')}${B(net === '4g', "psNet('4g')", '<i class="fa-solid fa-signal"></i> 4G')}${B(net === 'offline', "psNet('offline')", '<i class="fa-solid fa-plane"></i> 離線')}</div></div>
           <div><div class="ps-t">演示資料</div><div class="ps-row">${B(false, 'location.reload()', '<i class="fa-solid fa-rotate"></i> 重設演示資料')}</div></div>
+          <div class="ps-note">版本 5.9.4</div>
           <div class="ps-note">加入主畫面：在 iPhone Safari 點「分享」→「加入主畫面」，即可像 APP 一樣全螢幕開啟。</div>
         </div>`;
     }
+
+    /* 滿版高度：iPhone 加入主畫面時，innerHeight 可能比實際螢幕矮，改取螢幕高度 */
+    function setAppH() {
+      const standalone = window.navigator.standalone === true || (window.matchMedia && matchMedia('(display-mode: standalone)').matches);
+      let h = window.innerHeight;
+      /* 使用實際可視高度，避免底部分頁列被裁掉 */
+      document.documentElement.style.setProperty('--app-h', h + 'px');
+    }
+    setAppH(); ['resize', 'orientationchange', 'pageshow'].forEach(e => window.addEventListener(e, () => setTimeout(setAppH, 60)));
     function psTheme(m) { applyTheme(m); try { localStorage.setItem('fab18-theme', m); } catch (e) {} renderPhoneSettings(); }
     function psRole(r) { switchRole(r); renderPhoneScreen(); renderPhoneSettings(); }
     function psNet(n) { setNetwork(n); renderPhoneSettings(); }
