@@ -875,7 +875,10 @@ img, video { max-width: 100%; height: auto; }
     #phone-col{margin:0 auto}
     /* 手機實機 / 加入主畫面：滿版 APP */
     @media (max-width:520px), (pointer:coarse) and (max-width:900px){
-      #phone-col{width:100% !important;height:100%}
+      html,body{background:#020617;overflow:hidden}
+      html.light,html.light body{background:#f1f5f9}
+      body,main{height:auto !important;display:block !important}
+      #phone-col{position:fixed !important;inset:0;width:100% !important;height:auto !important;margin:0 !important}
       .phone-ctl{display:none !important}
       #phone-aside{padding:0 !important;width:100% !important;overflow:hidden}
       #phone-scaler{width:100vw !important;height:100% !important;margin:0 !important}
@@ -884,11 +887,12 @@ img, video { max-width: 100%; height: auto; }
       .safe-top{display:block;height:env(safe-area-inset-top,0px);background:#0f172a;flex-shrink:0}
       html.light .safe-top{background:#fff}
       #phone-sheet{top:env(safe-area-inset-top,0px) !important}
-      #phone-case > nav{height:calc(4.25rem + env(safe-area-inset-bottom,0px));padding-bottom:env(safe-area-inset-bottom,0px)}
+      #phone-case > nav{height:calc(3.9rem + env(safe-area-inset-bottom,0px));padding:6px 8px env(safe-area-inset-bottom,0px);align-items:flex-start}
       #phone-case > div.h-4{display:none !important}
       #toast-container{left:12px !important;right:12px;bottom:calc(5.5rem + env(safe-area-inset-bottom,0px)) !important}
     }
     #phone-case > nav button{min-width:3.6rem}
+    body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
     #phone-case > nav .text-\[10px\]{font-size:12px}
   </style>
   <style id="phone-settings-css">
