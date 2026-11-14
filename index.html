@@ -5,8 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="FAB18 巡檢">
+  <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
   <meta name="theme-color" content="#0f172a">
   <meta name="format-detection" content="telephone=no">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -73,6 +74,7 @@
     .light .bg-blue-900\/50{background-color:#dbeafe !important}
     .light .bg-blue-900\/60{background-color:#dbeafe !important}
     .light .bg-blue-950{background-color:#dbeafe !important}
+    .light .bg-blue-950\/60{background-color:#dbeafe !important}
     .light .bg-cyan-900{background-color:#cffafe !important}
     .light .bg-emerald-900{background-color:#d1fae5 !important}
     .light .bg-emerald-900\/50{background-color:#d1fae5 !important}
@@ -181,6 +183,22 @@
     .light .text-yellow-400{color:#ca8a04 !important}
     .light .text-white:not([class*="bg-blue-5"]):not([class*="bg-blue-6"]):not([class*="bg-blue-7"]):not([class*="bg-red-5"]):not([class*="bg-red-6"]):not([class*="bg-red-7"]):not([class*="bg-emerald-5"]):not([class*="bg-emerald-6"]):not([class*="bg-amber-5"]):not([class*="bg-amber-6"]):not([class*="bg-indigo-5"]):not([class*="bg-indigo-6"]):not([class*="bg-purple-6"]):not([class*="bg-orange-6"]):not([class*="bg-fuchsia-6"]):not([class*="from-"]):not([class*="bg-black"]):not([class*="bg-fuchsia-4"]):not([class*="bg-slate-700 text-slate-100"]):not([style*="background"]){color:#0f172a !important}
     .light .hover\:text-white:hover{color:#0f172a !important}
+    .light #phone-case > div.h-11 .text-white{color:#fff !important}
+    .light .plan-scroll{background:#f1f5f9 !important;border-color:rgba(2,132,199,.35) !important;box-shadow:inset 0 0 30px rgba(14,116,144,.08) !important}
+    .light .plan-box{background:radial-gradient(circle at 50% 38%,#ffffff 0%,#eef4fb 60%,#e2eaf4 100%) !important}
+    .light .plan-grid{background-image:linear-gradient(to right,rgba(2,132,199,.12) 1px,transparent 1px),linear-gradient(to bottom,rgba(2,132,199,.12) 1px,transparent 1px) !important;border-color:rgba(2,132,199,.5) !important}
+    .light .plan-grid > img{filter:invert(1) hue-rotate(180deg) saturate(1.5) contrast(1.5) brightness(.8);opacity:1 !important}
+    .light .plan-box [class*="text-sky-300"]{color:#0369a1 !important}
+    .light .layer-chip.text-white{color:#0f172a !important}
+    .light .plan-sel{background:rgba(192,38,211,.25) !important;border-color:#c026d3 !important}
+    .light ::-webkit-scrollbar-track{background:rgba(226,232,240,.8)}
+    .light ::-webkit-scrollbar-thumb{background:#94a3b8}
+    .light .iphone-case{box-shadow:0 0 0 10px #1e293b,0 0 0 12px #475569,0 25px 50px -12px rgba(15,23,42,.35)}
+    .light .stacked-card{box-shadow:0 1px 3px rgba(15,23,42,.12)}
+    .light input,.light textarea,.light select{color:#0f172a}
+    .light input::placeholder,.light textarea::placeholder{color:#94a3b8}
+    .light #photo-modal-cap b{color:#0f172a !important}
+    .light .shadow-2xl{box-shadow:0 10px 30px -8px rgba(15,23,42,.18)}
     .light #phone-case > div.h-11 .text-white{color:#fff !important}
     .light .plan-scroll{background:#f1f5f9 !important;border-color:rgba(2,132,199,.35) !important;box-shadow:inset 0 0 30px rgba(14,116,144,.08) !important}
     .light .plan-box{background:radial-gradient(circle at 50% 38%,#ffffff 0%,#eef4fb 60%,#e2eaf4 100%) !important}
@@ -396,10 +414,13 @@ img, video { max-width: 100%; height: auto; }
 .mt-1 { margin-top: 0.25rem; }
 .mt-auto { margin-top: auto; }
 .-mt-2 { margin-top: -0.5rem; }
+.ml-auto { margin-left: auto; }
+.mr-2 { margin-right: 0.5rem; }
 .mb-1\.5 { margin-bottom: 0.375rem; }
 .mb-2 { margin-bottom: 0.5rem; }
 .mb-3 { margin-bottom: 0.75rem; }
 .mr-1\.5 { margin-right: 0.375rem; }
+.mt-2 { margin-top: 0.5rem; }
 .block { display: block; }
 .inline-block { display: inline-block; }
 .flex { display: flex; }
@@ -563,6 +584,7 @@ img, video { max-width: 100%; height: auto; }
 .border-amber-600\/40 { border-color: rgba(217, 119, 6, 0.4); }
 .border-amber-700\/50 { border-color: rgba(180, 83, 9, 0.5); }
 .border-amber-800 { --tw-border-opacity: 1; border-color: rgb(146 64 14 / var(--tw-border-opacity, 1)); }
+.border-blue-500 { --tw-border-opacity: 1; border-color: rgb(59 130 246 / var(--tw-border-opacity, 1)); }
 .border-blue-500\/50 { border-color: rgba(59, 130, 246, 0.5); }
 .border-blue-600\/40 { border-color: rgba(37, 99, 235, 0.4); }
 .border-blue-800 { --tw-border-opacity: 1; border-color: rgb(30 64 175 / var(--tw-border-opacity, 1)); }
@@ -638,6 +660,7 @@ img, video { max-width: 100%; height: auto; }
 .bg-blue-500 { --tw-bg-opacity: 1; background-color: rgb(59 130 246 / var(--tw-bg-opacity, 1)); }
 .bg-blue-900\/50 { background-color: rgba(30, 58, 138, 0.5); }
 .bg-blue-950 { --tw-bg-opacity: 1; background-color: rgb(23 37 84 / var(--tw-bg-opacity, 1)); }
+.bg-blue-950\/60 { background-color: rgba(23, 37, 84, 0.6); }
 .bg-cyan-900\/50 { background-color: rgba(22, 78, 99, 0.5); }
 .bg-emerald-400 { --tw-bg-opacity: 1; background-color: rgb(52 211 153 / var(--tw-bg-opacity, 1)); }
 .bg-emerald-600 { --tw-bg-opacity: 1; background-color: rgb(5 150 105 / var(--tw-bg-opacity, 1)); }
@@ -829,6 +852,19 @@ img, video { max-width: 100%; height: auto; }
   .\32 xl\:block { display: block; }
   .\32 xl\:inline { display: inline; }
 }
+.sel-cell-text.has-zone { position: sticky; bottom: 8px; z-index: 30; box-shadow: rgba(0, 0, 0, 0.55) 0px 10px 28px; border-color: rgb(59, 130, 246) !important; }
+.zone-go-row { margin-top: 8px; padding: 10px; border-radius: 12px; background: rgb(15, 23, 42); border: 1px solid rgb(30, 58, 138); display: flex; align-items: center; gap: 10px; }
+.zone-go-row .zi { flex: 1 1 0%; min-width: 0px; line-height: 1.35; }
+.zone-go-row .zi b { display: block; color: rgb(255, 255, 255); font-size: 1.05em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.zone-go-row .zi span { display: block; color: rgb(148, 163, 184); font-size: 0.92em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.zone-go { flex-shrink: 0; min-height: 44px; padding: 0px 14px; border-radius: 12px; background: rgb(37, 99, 235); color: rgb(255, 255, 255); font-weight: 700; border: 0px; display: flex; align-items: center; gap: 6px; box-shadow: rgba(37, 99, 235, 0.4) 0px 4px 14px; }
+.zone-go:active { transform: scale(0.96); }
+[data-zone].zone-hit { outline: rgb(255, 255, 255) solid 2px; outline-offset: 1px; z-index: 6; filter: brightness(1.25); }
+html.light .zone-go-row { background: rgb(239, 246, 255); border-color: rgb(147, 197, 253); }
+html.light .zone-go-row .zi b { color: rgb(15, 23, 42); }
+html.light .zone-go-row .zi span { color: rgb(71, 85, 105); }
+html.light [data-zone].zone-hit { outline-color: rgb(15, 23, 42); }
+.wo-focus { box-shadow: rgb(59, 130, 246) 0px 0px 0px 2px, rgba(59, 130, 246, 0.45) 0px 0px 22px; }
   </style>
   <style id="phone-readability">
     /* 手機區塊：欄位與縮放控制 */
@@ -875,7 +911,13 @@ img, video { max-width: 100%; height: auto; }
     #phone-col{margin:0 auto}
     /* 手機實機 / 加入主畫面：滿版 APP */
     @media (max-width:520px), (pointer:coarse) and (max-width:900px){
-      #phone-col{width:100% !important;height:100%}
+      html,body{background:#020617;overflow:hidden}
+      html.light,html.light body{background:#f1f5f9}
+      body,main{height:auto !important;display:block !important}
+      #phone-col{position:fixed !important;top:0 !important;left:0 !important;right:0 !important;bottom:auto !important;width:100% !important;height:var(--app-h,100dvh) !important;margin:0 !important}
+      #phone-case .text-blue-400,#phone-case .text-red-400{font-weight:700}
+      html.light #phone-case .text-blue-400{color:#1d4ed8 !important}
+      html.light #phone-case .text-red-400{color:#b91c1c !important}
       .phone-ctl{display:none !important}
       #phone-aside{padding:0 !important;width:100% !important;overflow:hidden}
       #phone-scaler{width:100vw !important;height:100% !important;margin:0 !important}
@@ -884,11 +926,12 @@ img, video { max-width: 100%; height: auto; }
       .safe-top{display:block;height:env(safe-area-inset-top,0px);background:#0f172a;flex-shrink:0}
       html.light .safe-top{background:#fff}
       #phone-sheet{top:env(safe-area-inset-top,0px) !important}
-      #phone-case > nav{height:calc(4.25rem + env(safe-area-inset-bottom,0px));padding-bottom:env(safe-area-inset-bottom,0px)}
+      #phone-case > nav{height:calc(3.9rem + env(safe-area-inset-bottom,0px));padding:6px 8px env(safe-area-inset-bottom,0px);align-items:flex-start}
       #phone-case > div.h-4{display:none !important}
       #toast-container{left:12px !important;right:12px;bottom:calc(5.5rem + env(safe-area-inset-bottom,0px)) !important}
     }
     #phone-case > nav button{min-width:3.6rem}
+    body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
     #phone-case > nav .text-\[10px\]{font-size:12px}
   </style>
   <style id="phone-settings-css">
@@ -1527,7 +1570,7 @@ img, video { max-width: 100%; height: auto; }
         const red = zn.simopsOverlap && zn.timeOverlap, yel = zn.simopsOverlap && !zn.timeOverlap;
         const c = red ? ['#ef4444', 'rgba(239,68,68,.16)'] : yel ? ['#fbbf24', 'rgba(251,191,36,.14)'] : ['#38bdf8', 'rgba(56,189,248,.12)'];
         return `<div style="left:${r.left}%;top:${r.top}%;width:${r.width}%;height:${r.height}%;border:1.5px solid ${c[0]};background:${c[1]};box-shadow:0 0 12px ${c[0]}55, inset 0 0 14px ${c[0]}22"
-                  class="absolute rounded-[3px] pointer-events-none ${red ? 'simops-pulse-red' : ''}">
+                  data-zone="${zn.id}" class="absolute rounded-[3px] pointer-events-none ${red ? 'simops-pulse-red' : ''}">
                   <div style="background:${c[0]};font-size:1.55cqw" class="absolute -top-px -left-px leading-none font-bold px-[.6cqw] py-[.35cqw] rounded-br text-slate-950 max-w-full truncate">${esc(zn.contractor)}</div>
                 </div>`;
       }).join('');
@@ -1613,13 +1656,20 @@ img, video { max-width: 100%; height: auto; }
           mk.classList.remove('hidden');
         } else mk.classList.add('hidden');
       });
+      const hitIds = sc ? zonesAtCell(sc.floor, sc.row, sc.col).map(z => z.id) : [];
+      document.querySelectorAll('[data-zone]').forEach(d => d.classList.toggle('zone-hit', hitIds.includes(d.dataset.zone) && sc && sc.floor === d.closest('.plan-scroll')?.dataset.floor));
       document.querySelectorAll('.sel-cell-text').forEach(el => {
-        if (!sc) { el.innerHTML = '<span class="text-slate-400"><i class="fa-solid fa-hand-pointer"></i> 點選平面圖任一格位，可定位並帶入缺失開立位置</span>'; return; }
+        if (!sc) { el.classList.remove('has-zone'); el.innerHTML = '<span class="text-slate-400"><i class="fa-solid fa-hand-pointer"></i> 點選平面圖上的施工範圍，可跳轉到該區的現場稽核工單</span>'; return; }
         const zs = zonesAtCell(sc.floor, sc.row, sc.col);
         const here = getPins(sc.floor).filter(p => p.pos.row === sc.row && p.pos.col === sc.col);
+        el.classList.toggle('has-zone', zs.length > 0);
         el.innerHTML = `<i class="fa-solid fa-location-crosshairs text-fuchsia-400"></i> 已選格位 <b class="font-mono text-fuchsia-300">${sc.floor} ${cellName(sc.row, sc.col)}</b>
-          <span class="text-slate-400">· ${zs.length ? '施工區：' + zs.map(z => esc(z.contractor)).join('、') : '無登錄施工區'}</span>
-          ${here.length ? `<div class="mt-1 space-y-0.5">${here.map(p => `<div><span style="color:${PIN_META[p.type].bg}"><i class="fa-solid ${PIN_META[p.type].icon}"></i> ${PIN_META[p.type].label}</span> <span class="text-slate-200">${esc(p.label)}</span></div>`).join('')}</div>` : ''}`;
+          <span class="text-slate-400">· ${zs.length ? '位於 ' + zs.length + ' 個施工區' : '無登錄施工區'}</span>
+          ${zs.map(z => { const w = workorderForZone(z); const red = z.simopsOverlap && z.timeOverlap, yel = z.simopsOverlap && !z.timeOverlap;
+            return `<div class="zone-go-row"><span class="w-3 h-3 rounded-full shrink-0 ${red ? 'bg-red-500' : yel ? 'bg-amber-400' : 'bg-sky-400'}"></span>
+              <div class="zi"><b>${esc(z.contractor)}</b><span>${esc(z.task)}</span><span class="font-mono">${w ? w.id : ''} ・ ${z.time}</span></div>
+              <button class="zone-go" onclick="gotoZoneWorkorder('${z.id}','${sc.floor}')"><i class="fa-solid fa-file-lines"></i> 前往工單</button></div>`; }).join('')}
+          ${here.length ? `<div class="mt-2 space-y-0.5">${here.map(p => `<div><span style="color:${PIN_META[p.type].bg}"><i class="fa-solid ${PIN_META[p.type].icon}"></i> ${PIN_META[p.type].label}</span> <span class="text-slate-200">${esc(p.label)}</span></div>`).join('')}</div>` : ''}`;
       });
     }
 
@@ -1681,6 +1731,7 @@ img, video { max-width: 100%; height: auto; }
       afterQuery(filterWorkers().length, '人員');
     }
     function runWorkorderQuery() {
+      APP_STATE.focusWO = null;
       APP_STATE.q.workorder = { kw: val('wo-kw'), main: val('wo-main'), sub: val('wo-sub') };
       afterQuery(filterWorkorders().length, '工單');
     }
@@ -1694,7 +1745,7 @@ img, video { max-width: 100%; height: auto; }
     }
     function clearQuery(kind) {
       const d = { worker: { full: '', last: '', name: '' }, workorder: { kw: '', main: '', sub: '' }, equipment: { kw: '' }, vehicle: { kw: '' } };
-      APP_STATE.q[kind] = d[kind];
+      APP_STATE.q[kind] = d[kind]; if (kind === 'workorder') APP_STATE.focusWO = null;
       renderPhoneScreen(); renderLeftDashboard();
     }
     function enterKey(e, fn) { if (e.key === 'Enter') { e.preventDefault(); fn(); } }
@@ -2190,6 +2241,55 @@ img, video { max-width: 100%; height: auto; }
     }
     computeSimops();
 
+    /* ════════════ 施工區 ↔ 工單 對應 (平面圖點施工範圍 → 跳轉現場稽核工單) ════════════ */
+    const zoneGridStr = z => `${z.colStart}~${z.colEnd} / ${z.rowStart}~${z.rowEnd}`;
+    (function ensureZoneWorkorders() {
+      const subs = ['吉利機電行', '信泰科技工程', '新邦裝飾板', '正盛管線', '大立泥作工程', '鴻運吊裝', '力捷電氣', '宏達電機'];
+      let i = 0;
+      Object.entries(FLOOR_SIMOPS_DATA).forEach(([fid, fd]) => fd.zones.forEach(z => {
+        let w = WORKORDERS_DB.find(x => x.floor === fid && x.columns === zoneGridStr(z) && !x.zoneId);
+        if (!w) {
+          i++;
+          const hi = /高空|吊|感電|動火|侷限|可燃|高壓|密閉|電弧|有機溶劑/.test(z.risk);
+          w = WO('WO-2026-' + (9000 + i * 7), `${fid} ${z.task}`, z.contractor, subs[i % subs.length], 2 + (i % 4), fid, zoneGridStr(z), hi, z.risk,
+            hi ? `「高風險檢點App」${String(Math.floor(z.timeStart)).padStart(2, '0')}:10 已完成主管自主檢查，作業區已警戒、檢點項目合格。` : '一般自主安全檢點合格表已上傳雲端。',
+            `${z.contractor.slice(0, 2)}安衛員`, `09${10 + i % 80}-${100 + i * 7 % 900}-${200 + i * 13 % 800}`);
+          WORKORDERS_DB.push(w);
+        }
+        w.zoneId = z.id;
+      }));
+    })();
+    function workorderForZone(z) { return WORKORDERS_DB.find(w => w.zoneId === z.id); }
+    function gotoZoneWorkorder(zid, floorId) {
+      const z = (FLOOR_SIMOPS_DATA[floorId] || { zones: [] }).zones.find(x => x.id === zid); if (!z) return;
+      const w = workorderForZone(z); if (!w) return;
+      APP_STATE.q.workorder = { kw: w.id, main: '', sub: '' };
+      APP_STATE.focusWO = { id: w.id, zoneId: zid, label: `${floorId} ・ ${z.contractor} ・ ${z.task}` };
+      APP_STATE.currentInspectSubTab = 'workorder';
+      switchPhoneTab('inspect');
+      showToast(`已跳轉至現場稽核工單 ${w.id}（${z.contractor}）`, 'info');
+    }
+    function backToPlanFromWO() { APP_STATE.focusWO = null; clearQuery('workorder'); switchPhoneTab('map'); }
+
+    (function injectZoneGoCss() {
+      const st = document.createElement('style'); st.id = 'zone-go-css';
+      st.textContent = `
+        .sel-cell-text.has-zone{position:sticky;bottom:8px;z-index:30;box-shadow:0 10px 28px rgba(0,0,0,.55);border-color:#3b82f6 !important}
+        .zone-go-row{margin-top:8px;padding:10px;border-radius:12px;background:#0f172a;border:1px solid #1e3a8a;display:flex;align-items:center;gap:10px}
+        .zone-go-row .zi{flex:1;min-width:0;line-height:1.35}
+        .zone-go-row .zi b{display:block;color:#fff;font-size:1.05em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+        .zone-go-row .zi span{display:block;color:#94a3b8;font-size:.92em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+        .zone-go{flex-shrink:0;min-height:44px;padding:0 14px;border-radius:12px;background:#2563eb;color:#fff;font-weight:700;border:0;display:flex;align-items:center;gap:6px;box-shadow:0 4px 14px rgba(37,99,235,.4)}
+        .zone-go:active{transform:scale(.96)}
+        [data-zone].zone-hit{outline:2px solid #fff;outline-offset:1px;z-index:6;filter:brightness(1.25)}
+        html.light .zone-go-row{background:#eff6ff;border-color:#93c5fd}
+        html.light .zone-go-row .zi b{color:#0f172a}
+        html.light .zone-go-row .zi span{color:#475569}
+        html.light [data-zone].zone-hit{outline-color:#0f172a}
+        .wo-focus{box-shadow:0 0 0 2px #3b82f6,0 0 22px rgba(59,130,246,.45)}`;
+      document.head.appendChild(st);
+    })();
+
     /* ════════════ 深色 / 淺色模式 ════════════ */
     function applyTheme(mode) {
       document.documentElement.classList.toggle('light', mode === 'light');
@@ -2343,16 +2443,18 @@ img, video { max-width: 100%; height: auto; }
           <div class="sel-cell-text p-3 bg-slate-900 rounded-xl border border-slate-800 text-sm text-slate-300 leading-relaxed"></div>
 
           <div class="space-y-2.5">
-            <div class="text-sm font-semibold text-slate-200">本層施工區 (${floorData.zones.length})</div>
+            <div class="text-sm font-semibold text-slate-200">本層施工區 (${floorData.zones.length}) <span class="text-slate-400 font-normal">・點一下進入工單</span></div>
             ${floorData.zones.length ? floorData.zones.map(z => {
               const red = z.simopsOverlap && z.timeOverlap, yel = z.simopsOverlap && !z.timeOverlap;
-              return `<div class="p-3.5 rounded-2xl border flex items-center gap-3 ${red ? 'bg-red-950/50 border-red-700/60' : yel ? 'bg-amber-950/40 border-amber-700/50' : 'bg-slate-900 border-slate-800'}">
+              const wo = workorderForZone(z);
+              return `<div onclick="gotoZoneWorkorder('${z.id}','${currentFloor.id}')" class="p-3.5 rounded-2xl border flex items-center gap-3 cursor-pointer active:scale-[.98] ${red ? 'bg-red-950/50 border-red-700/60' : yel ? 'bg-amber-950/40 border-amber-700/50' : 'bg-slate-900 border-slate-800'}">
                 <span class="w-3 h-3 rounded-full shrink-0 ${red ? 'bg-red-500' : yel ? 'bg-amber-400' : 'bg-sky-400'}"></span>
                 <div class="min-w-0">
                   <div class="text-[15px] font-bold text-white truncate">${esc(z.contractor)}</div>
                   <div class="text-sm text-slate-300 truncate">${esc(z.task)}</div>
-                  <div class="text-sm text-slate-400 font-mono">${z.time} ・ ${z.colStart}~${z.colEnd}/${z.rowStart}~${z.rowEnd}</div>
-                </div></div>`;
+                  <div class="text-sm text-slate-400 font-mono">${z.time} ・ ${wo ? wo.id : ''}</div>
+                </div>
+                <span class="ml-auto shrink-0 text-blue-400 text-sm font-bold flex items-center gap-1">工單<i class="fa-solid fa-chevron-right text-xs"></i></span></div>`;
             }).join('') : '<div class="text-sm text-slate-500 py-3 text-center">本層尚無施工區</div>'}
           </div>
 
@@ -2452,15 +2554,19 @@ img, video { max-width: 100%; height: auto; }
               <button onclick="runWorkorderQuery()" class="${P_SEARCH_BTN}"><i class="fa-solid fa-magnifying-glass text-xl"></i><span>搜尋</span></button>
             </div>
           </div>
+          ${APP_STATE.focusWO ? `<div class="p-3.5 rounded-2xl bg-blue-950/60 border border-blue-700/50 flex items-center justify-between gap-3">
+            <div class="text-sm text-blue-200 min-w-0"><i class="fa-solid fa-location-dot"></i> 來自平面圖<div class="font-bold text-white leading-snug">${esc(APP_STATE.focusWO.label)}</div></div>
+            <button onclick="backToPlanFromWO()" class="px-3 h-11 shrink-0 bg-slate-800 hover:bg-slate-700 text-white rounded-xl text-sm font-bold"><i class="fa-solid fa-map"></i> 回平面圖</button></div>` : ''}
           ${resultBar(list.length, WORKORDERS_DB.length, 'workorder')}
           ${list.length ? list.map(w => `
-            <button onclick="openDefectSheet('workorder','${w.id}')" class="${P_CARD} ${w.isHighRisk ? 'border-amber-600/40' : 'border-slate-800'}">
+            <button onclick="openDefectSheet('workorder','${w.id}')" class="${P_CARD} ${(APP_STATE.focusWO && APP_STATE.focusWO.id === w.id) ? 'wo-focus border-blue-500' : w.isHighRisk ? 'border-amber-600/40' : 'border-slate-800'}">
               <div class="flex items-center justify-between gap-2">
                 <span class="text-sm font-mono font-bold text-indigo-300">${w.id}</span>
                 ${w.isHighRisk ? '<span class="text-xs bg-amber-900 text-amber-200 px-2.5 py-1 rounded-full font-bold">高風險</span>' : '<span class="text-xs bg-slate-800 text-slate-300 px-2.5 py-1 rounded-full">一般</span>'}
               </div>
               <div class="text-base font-bold text-white leading-snug">${esc(w.name)}</div>
               <div class="text-sm text-slate-300 truncate">${esc(w.mainContractor)} ・ ${w.floor}</div>
+              ${(APP_STATE.focusWO && APP_STATE.focusWO.id === w.id) ? '<div class="text-sm text-blue-300 font-bold pt-1"><i class="fa-solid fa-triangle-exclamation"></i> 點此開立缺失 / 稽核</div>' : ''}
             </button>`).join('') : emptyBox('查無符合的工單')}
           ${TAP_HINT}`;
       }
@@ -2809,7 +2915,7 @@ img, video { max-width: 100%; height: auto; }
                     <td class="p-2.5">${z.simopsOverlap && z.timeOverlap ? '<span class="px-2 py-0.5 rounded bg-red-950 text-red-300 border border-red-800 font-bold">雙重疊衝突 (已通報CM)</span>'
                       : z.simopsOverlap ? '<span class="px-2 py-0.5 rounded bg-amber-950 text-amber-300 border border-amber-800">空間重疊 (時段錯開)</span>'
                       : '<span class="px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">獨立工區 (正常)</span>'}</td>
-                    <td class="p-2.5 text-right"><button onclick="handleTriggerCMMeeting()" class="text-blue-400 hover:text-blue-300 underline font-semibold">協調管制</button></td>
+                    <td class="p-2.5 text-right whitespace-nowrap"><button onclick="gotoZoneWorkorder('${z.id}','${currentFloor.id}')" class="px-2.5 py-1 mr-2 bg-blue-600 hover:bg-blue-500 text-white rounded-md font-semibold"><i class="fa-solid fa-file-lines"></i> 前往工單</button><button onclick="handleTriggerCMMeeting()" class="text-blue-400 hover:text-blue-300 underline font-semibold">協調管制</button></td>
                   </tr>`).join('')}
               </tbody>
             </table>
@@ -2867,7 +2973,7 @@ img, video { max-width: 100%; height: auto; }
             ${statCard('高風險作業工單', `<span class="text-amber-400">${WORKORDERS_DB.filter(w => w.isHighRisk).length}</span> <span class="text-xs text-slate-400 font-normal">件</span>`)}
             ${statCard('高風險檢點 App 連動率', '<span class="text-emerald-400">100%</span>')}
           </div>` + dataTable('工單安全稽核歷程與高風險檢點 App 連動紀錄', 'fa-file-lines', ['工單單號', '工單名稱', '主承商 / 次承商', '樓層 / 柱位', '風險', '稽核次數', '安衛員'],
-          list.map(w => `<tr class="hover:bg-slate-900/50">
+          list.map(w => `<tr class="hover:bg-slate-900/50 ${APP_STATE.focusWO && APP_STATE.focusWO.id === w.id ? 'wo-focus' : ''}">
             <td class="p-2.5 font-mono text-indigo-300 font-bold">${w.id}</td><td class="p-2.5 font-bold text-white">${esc(w.name)}</td>
             <td class="p-2.5">${esc(w.mainContractor)} <span class="text-slate-500">/</span> ${esc(w.subContractor)}</td>
             <td class="p-2.5 font-mono text-blue-400">${w.floor} ${w.columns}</td>
@@ -2923,7 +3029,10 @@ img, video { max-width: 100%; height: auto; }
             <td class="p-2.5">${e.status === 'open' ? pill('未結案', PILL.warn) : pill('已結案', PILL.info)}</td>
             <td class="p-2.5 text-slate-400">${esc(e.auditor)}<br><span class="font-mono text-[10px]">${e.time}</span></td><td class="p-2.5 text-slate-400 max-w-xs">${esc(e.historyWarning)}</td></tr>`));
       }
-      container.innerHTML = `<div class="flex items-center justify-between">${subTabs}</div>${body}`;
+      const focusBar = (sub === 'workorder' && APP_STATE.focusWO) ? `<div class="p-3 rounded-xl bg-blue-950/60 border border-blue-700/50 flex items-center justify-between gap-3 text-sm">
+          <span class="text-blue-200"><i class="fa-solid fa-location-dot"></i> 由平面圖跳轉：<b class="text-white">${esc(APP_STATE.focusWO.label)}</b></span>
+          <button onclick="backToPlanFromWO()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-white rounded-lg font-semibold shrink-0"><i class="fa-solid fa-map"></i> 回平面圖</button></div>` : '';
+      container.innerHTML = `<div class="flex items-center justify-between">${subTabs}</div>${focusBar}${body}`;
     }
 
     function renderLeftReportSummaryView(container) {
@@ -3153,9 +3262,19 @@ img, video { max-width: 100%; height: auto; }
           <div><div class="ps-t">網路狀態 (演示用)</div><div class="ps-row c3">
             ${B(net === 'wifi', "psNet('wifi')", '<i class="fa-solid fa-wifi"></i> Wi-Fi')}${B(net === '4g', "psNet('4g')", '<i class="fa-solid fa-signal"></i> 4G')}${B(net === 'offline', "psNet('offline')", '<i class="fa-solid fa-plane"></i> 離線')}</div></div>
           <div><div class="ps-t">演示資料</div><div class="ps-row">${B(false, 'location.reload()', '<i class="fa-solid fa-rotate"></i> 重設演示資料')}</div></div>
+          <div class="ps-note">版本 5.10.1</div>
           <div class="ps-note">加入主畫面：在 iPhone Safari 點「分享」→「加入主畫面」，即可像 APP 一樣全螢幕開啟。</div>
         </div>`;
     }
+
+    /* 滿版高度：iPhone 加入主畫面時，innerHeight 可能比實際螢幕矮，改取螢幕高度 */
+    function setAppH() {
+      const standalone = window.navigator.standalone === true || (window.matchMedia && matchMedia('(display-mode: standalone)').matches);
+      let h = window.innerHeight;
+      /* 使用實際可視高度，避免底部分頁列被裁掉 */
+      document.documentElement.style.setProperty('--app-h', h + 'px');
+    }
+    setAppH(); ['resize', 'orientationchange', 'pageshow'].forEach(e => window.addEventListener(e, () => setTimeout(setAppH, 60)));
     function psTheme(m) { applyTheme(m); try { localStorage.setItem('fab18-theme', m); } catch (e) {} renderPhoneSettings(); }
     function psRole(r) { switchRole(r); renderPhoneScreen(); renderPhoneSettings(); }
     function psNet(n) { setNetwork(n); renderPhoneSettings(); }
