@@ -1780,6 +1780,7 @@ html.light [data-zone].zone-hit { outline-color: rgb(15, 23, 42); }
       currentInspectSubTab: 'worker',
       currentFloorIndex: 4,
       mapZoom: 1,
+      fabMirror: (() => { try { return localStorage.getItem('f22p4-fab-mirror') === '1'; } catch (e) { return false; } })(),
       layers: { defect: true, equip: true, people: true, vehicle: true, praise: true },
       selectedCell: null, // {floor,row,col}
       offlineQueue: [],
@@ -1853,13 +1854,15 @@ html.light [data-zone].zone-hit { outline-color: rgb(15, 23, 42); }
     };
     const PLAN_TAGS = { 'EXT-GL': [ { t: 'FAB', s: 'P4A1~P4B2', x: .37, y: .47, c: '#0ea5e9', go: 'FAB' }, { t: 'CUP', s: '動力棟', x: .867, y: .27, c: '#f59e0b', go: 'CUP' }, { t: 'BSGS', s: '', x: .867, y: .73, c: '#8b5cf6' } ] };
     const _fabGrid = fabGrid();
-    const gridOf = id => PLAN_GRIDS[id] || _fabGrid;
+    /* FAB 柱位數字方向：預設 1→26 由左至右；鏡像後 26→1 (數字 1 在右側) */
+    const _fabGridM = (() => { const g = fabGrid(), nm = NUMS(26).reverse(); g.xs = g.xs.map((l, i) => ({ n: nm[i], f: l.f })); g.order = 'num'; g.mirror = true; return g; })();
+    const gridOf = id => PLAN_GRIDS[id] || (APP_STATE.fabMirror ? _fabGridM : _fabGrid);
 
     function bayOf(lines, f, order) {
       const n = lines.length;
       if (f < lines[0].f) return [-1, 0, `${lines[0].n}外`];
       if (f >= lines[n - 1].f) return [n - 1, n, `${lines[n - 1].n}外`];
-      for (let i = 0; i < n - 1; i++) if (f < lines[i + 1].f) { const a = lines[i].n, b = lines[i + 1].n; return [i, i + 1, order === 'alpha' ? [a, b].sort().join('~') : `${a}~${b}`]; }
+      for (let i = 0; i < n - 1; i++) if (f < lines[i + 1].f) { const a = lines[i].n, b = lines[i + 1].n; return [i, i + 1, order === 'alpha' ? [a, b].sort().join('~') : order === 'num' ? [a, b].sort((p, q) => p - q).join('~') : `${a}~${b}`]; }
     }
     const lineF = (lines, i) => i < 0 ? 0 : i >= lines.length ? 1 : lines[i].f;
     function pickAt(g, fx, fy) {
@@ -1886,7 +1889,7 @@ html.light [data-zone].zone-hit { outline-color: rgb(15, 23, 42); }
       }
       m = /^([A-Z])-(\d{1,2})/.exec(t);
       if (m) {
-        const fx = (+m[2] - .5) / 26, fy = (m[1].charCodeAt(0) - 65 + .5) / 26, p = pickAt(g, fx, fy), c = codeCenter(g, p.code) || { x: fx, y: fy };
+        const fx = (g.mirror ? 26 - +m[2] + .5 : +m[2] - .5) / 26, fy = (m[1].charCodeAt(0) - 65 + .5) / 26, p = pickAt(g, fx, fy), c = codeCenter(g, p.code) || { x: fx, y: fy };
         return { code: p.code, x: c.x, y: c.y };
       }
       return null;
@@ -2140,16 +2143,16 @@ html.light [data-zone].zone-hit { outline-color: rgb(15, 23, 42); }
       return pins.map(p => { const q = posOf(floorId, p.cell); return q ? { ...p, cell: q.code, pos: q } : null; }).filter(Boolean);
     }
 
-    function zoneRectPct(z) {
-      const r0 = z.colStart.charCodeAt(0) - 65, r1 = z.colEnd.charCodeAt(0) - 65, n = PLAN.N;
-      return { top: r0 / n * 100, height: (r1 - r0 + 1) / n * 100, left: (z.rowStart - 1) / n * 100, width: (z.rowEnd - z.rowStart + 1) / n * 100 };
+    function zoneRectPct(z, floorId) {
+      const r0 = z.colStart.charCodeAt(0) - 65, r1 = z.colEnd.charCodeAt(0) - 65, n = PLAN.N, mir = floorId && gridOf(floorId).mirror;
+      return { top: r0 / n * 100, height: (r1 - r0 + 1) / n * 100, left: (mir ? PLAN.N - z.rowEnd : z.rowStart - 1) / n * 100, width: (z.rowEnd - z.rowStart + 1) / n * 100 };
     }
 
     function planHTML(floorId) {
       const fd = FLOOR_SIMOPS_DATA[floorId] || { zones: [] };
       const zm = APP_STATE.mapZoom, g = gridOf(floorId);
       const zonesHtml = fd.zones.map(zn => {
-        const r = zoneRectPct(zn);
+        const r = zoneRectPct(zn, floorId);
         const red = zn.simopsOverlap && zn.timeOverlap, yel = zn.simopsOverlap && !zn.timeOverlap;
         const c = red ? ['#ef4444', 'rgba(239,68,68,.16)'] : yel ? ['#fbbf24', 'rgba(251,191,36,.14)'] : ['#38bdf8', 'rgba(56,189,248,.12)'];
         return `<div style="left:${r.left}%;top:${r.top}%;width:${r.width}%;height:${r.height}%;border:1.5px solid ${c[0]};background:${c[1]};box-shadow:0 0 12px ${c[0]}55, inset 0 0 14px ${c[0]}22"
@@ -2190,12 +2193,21 @@ html.light [data-zone].zone-hit { outline-color: rgb(15, 23, 42); }
     }
 
     function planControlsHTML() {
-      const z = APP_STATE.mapZoom;
+      const z = APP_STATE.mapZoom, cf = FLOORS[APP_STATE.currentFloorIndex], mir = APP_STATE.fabMirror;
+      const mirBtn = cf && cf.area === 'FAB' ? `<button onclick="toggleFabMirror()" class="h-10 px-2.5 rounded-xl text-[13px] font-semibold ${mir ? 'bg-blue-600 text-white' : 'bg-slate-700 text-slate-100'}" style="margin-left:6px;white-space:nowrap" title="FAB 柱位數字方向：目前 1→26 ${mir ? '由右至左' : '由左至右'}，點按切換鏡像"><i class="fa-solid fa-left-right"></i> ${mir ? '右→左' : '左→右'}</button>` : '';
       return `<div class="flex items-center gap-1">
         <button onclick="setMapZoom(-1)" class="w-10 h-10 rounded-xl bg-slate-700 hover:bg-slate-600 text-slate-100 text-sm" title="縮小"><i class="fa-solid fa-minus"></i></button>
         <span class="text-sm font-mono text-slate-200 w-12 text-center">${Math.round(z * 100)}%</span>
-        <button onclick="setMapZoom(1)" class="w-10 h-10 rounded-xl bg-slate-700 hover:bg-slate-600 text-slate-100 text-sm" title="放大"><i class="fa-solid fa-plus"></i></button>
+        <button onclick="setMapZoom(1)" class="w-10 h-10 rounded-xl bg-slate-700 hover:bg-slate-600 text-slate-100 text-sm" title="放大"><i class="fa-solid fa-plus"></i></button>${mirBtn}
       </div>`;
+    }
+    function toggleFabMirror() {
+      APP_STATE.fabMirror = !APP_STATE.fabMirror;
+      try { localStorage.setItem('f22p4-fab-mirror', APP_STATE.fabMirror ? '1' : '0'); } catch (e) {}
+      const sc = APP_STATE.selectedCell;
+      if (sc && sc.code && floorArea(sc.floor) === 'FAB') { const q = posOf(sc.floor, sc.code); if (q) APP_STATE.selectedCell = { floor: sc.floor, code: q.code, fx: q.x, fy: q.y }; }
+      renderPhoneScreen(); renderLeftDashboard(); updateSelMarkers();
+      showToast(APP_STATE.fabMirror ? 'FAB 柱位數字改為 26→1 (由左至右)，數字 1 在右側' : 'FAB 柱位數字恢復 1→26 (由左至右)', 'info');
     }
 
     function planLayersHTML(floorId) {
@@ -2240,7 +2252,7 @@ html.light [data-zone].zone-hit { outline-color: rgb(15, 23, 42); }
 
     function zonesAtCell(floorId, fx, fy) {
       const fd = FLOOR_SIMOPS_DATA[floorId] || { zones: [] };
-      return fd.zones.filter(z => { const r = zoneRectPct(z); return fx * 100 >= r.left && fx * 100 <= r.left + r.width && fy * 100 >= r.top && fy * 100 <= r.top + r.height; });
+      return fd.zones.filter(z => { const r = zoneRectPct(z, floorId); return fx * 100 >= r.left && fx * 100 <= r.left + r.width && fy * 100 >= r.top && fy * 100 <= r.top + r.height; });
     }
 
     function updateSelMarkers() {
@@ -4620,7 +4632,7 @@ html.light [data-zone].zone-hit { outline-color: rgb(15, 23, 42); }
           <div><div class="ps-t">網路狀態 (演示用)</div><div class="ps-row c3">
             ${B(net === 'wifi', "psNet('wifi')", '<i class="fa-solid fa-wifi"></i> Wi-Fi')}${B(net === '4g', "psNet('4g')", '<i class="fa-solid fa-signal"></i> 4G')}${B(net === 'offline', "psNet('offline')", '<i class="fa-solid fa-plane"></i> 離線')}</div></div>
           <div><div class="ps-t">演示資料</div><div class="ps-row">${B(false, 'location.reload()', '<i class="fa-solid fa-rotate"></i> 重設演示資料')}</div></div>
-          <div class="ps-note">版本 6.1.3</div>
+          <div class="ps-note">版本 6.1.5</div>
           
         </div>`;
     }
